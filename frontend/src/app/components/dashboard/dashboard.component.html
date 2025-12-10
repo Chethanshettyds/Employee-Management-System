@@ -1,0 +1,86 @@
+<div class="dashboard-container">
+  <app-navbar></app-navbar>
+  <div class="content-wrapper">
+    <app-sidebar></app-sidebar>
+    <div class="main-content">
+      <div class="page-header">
+        <h1>Dashboard</h1>
+        <p>Overview of employee statistics</p>
+      </div>
+
+      <div *ngIf="isLoading" class="loading">Loading...</div>
+
+      <div *ngIf="!isLoading && stats" class="dashboard-grid">
+        <div class="stat-card primary">
+          <div class="stat-icon">👥</div>
+          <div class="stat-info">
+            <h3>Total Employees</h3>
+            <p class="stat-number">{{ stats.total_employees }}</p>
+          </div>
+        </div>
+
+        <div class="stat-card success">
+          <div class="stat-icon">👨</div>
+          <div class="stat-info">
+            <h3>Male Employees</h3>
+            <p class="stat-number">{{ stats.male_employees }}</p>
+          </div>
+        </div>
+
+        <div class="stat-card warning">
+          <div class="stat-icon">👩</div>
+          <div class="stat-info">
+            <h3>Female Employees</h3>
+            <p class="stat-number">{{ stats.female_employees }}</p>
+          </div>
+        </div>
+
+        <div class="stat-card info">
+          <div class="stat-icon">📋</div>
+          <div class="stat-info">
+            <h3>Permanent</h3>
+            <p class="stat-number">{{ stats.permanent_employees }}</p>
+          </div>
+        </div>
+
+        <div class="stat-card secondary">
+          <div class="stat-icon">📝</div>
+          <div class="stat-info">
+            <h3>Temporary</h3>
+            <p class="stat-number">{{ stats.temporary_employees }}</p>
+          </div>
+        </div>
+
+        <div class="stat-card danger">
+          <div class="stat-icon">📄</div>
+          <div class="stat-info">
+            <h3>Contract</h3>
+            <p class="stat-number">{{ stats.contract_employees }}</p>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="!isLoading && stats" class="charts-section">
+        <div class="chart-card">
+          <h3>Department Distribution</h3>
+          <div class="chart-list">
+            <div *ngFor="let dept of stats.department_wise" class="chart-item">
+              <span class="chart-label">{{ dept.department__name }}</span>
+              <span class="chart-value">{{ dept.count }}</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="chart-card">
+          <h3>Company Distribution</h3>
+          <div class="chart-list">
+            <div *ngFor="let comp of stats.company_wise" class="chart-item">
+              <span class="chart-label">{{ comp.company__name }}</span>
+              <span class="chart-value">{{ comp.count }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

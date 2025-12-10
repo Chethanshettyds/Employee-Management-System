@@ -1,0 +1,179 @@
+<div class="form-container">
+  <app-navbar></app-navbar>
+  <div class="content-wrapper">
+    <app-sidebar></app-sidebar>
+    <div class="main-content">
+      <div class="page-header">
+        <h1>{{ isEditMode ? 'Edit Employee' : 'Add New Employee' }}</h1>
+      </div>
+
+      <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()" class="employee-form">
+        <div class="form-section">
+          <h3>Basic Information</h3>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="employee_id">Employee ID *</label>
+              <input type="text" id="employee_id" formControlName="employee_id" class="form-control">
+            </div>
+            <div class="form-group">
+              <label for="first_name">First Name *</label>
+              <input type="text" id="first_name" formControlName="first_name" class="form-control">
+            </div>
+            <div class="form-group">
+              <label for="last_name">Last Name *</label>
+              <input type="text" id="last_name" formControlName="last_name" class="form-control">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="email">Email *</label>
+              <input type="email" id="email" formControlName="email" class="form-control">
+            </div>
+            <div class="form-group">
+              <label for="phone">Phone *</label>
+              <input type="tel" id="phone" formControlName="phone" class="form-control">
+            </div>
+            <div class="form-group">
+              <label for="date_of_birth">Date of Birth *</label>
+              <input type="date" id="date_of_birth" formControlName="date_of_birth" class="form-control">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="gender">Gender *</label>
+              <select id="gender" formControlName="gender" class="form-control">
+                <option value="M">Male</option>
+                <option value="F">Female</option>
+                <option value="O">Other</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-section">
+          <h3>Address Information</h3>
+          <div class="form-row">
+            <div class="form-group full-width">
+              <label for="address">Address *</label>
+              <textarea id="address" formControlName="address" class="form-control" rows="3"></textarea>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="city">City *</label>
+              <input type="text" id="city" formControlName="city" class="form-control">
+            </div>
+            <div class="form-group">
+              <label for="state">State *</label>
+              <input type="text" id="state" formControlName="state" class="form-control">
+            </div>
+            <div class="form-group">
+              <label for="pincode">Pincode *</label>
+              <input type="text" id="pincode" formControlName="pincode" class="form-control">
+            </div>
+          </div>
+        </div>
+
+        <div class="form-section">
+          <h3>Employment Details</h3>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="company">Company *</label>
+              <select id="company" formControlName="company" class="form-control">
+                <option value="">Select Company</option>
+                <option *ngFor="let company of companies" [value]="company.id">
+                  {{ company.name }}
+                </option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="department">Department *</label>
+              <select id="department" formControlName="department" class="form-control">
+                <option value="">Select Department</option>
+                <option *ngFor="let dept of departments" [value]="dept.id">
+                  {{ dept.name }}
+                </option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="designation">Designation *</label>
+              <select id="designation" formControlName="designation" class="form-control">
+                <option value="">Select Designation</option>
+                <option *ngFor="let desig of designations" [value]="desig.id">
+                  {{ desig.title }}
+                </option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="location">Location *</label>
+              <select id="location" formControlName="location" class="form-control">
+                <option value="">Select Location</option>
+                <option *ngFor="let loc of locations" [value]="loc.id">
+                  {{ loc.name }}
+                </option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="employee_type">Employee Type *</label>
+              <select id="employee_type" formControlName="employee_type" class="form-control">
+                <option value="">Select Type</option>
+                <option *ngFor="let type of employeeTypes" [value]="type.id">
+                  {{ type.name }}
+                </option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="salary">Salary *</label>
+              <input type="number" id="salary" formControlName="salary" class="form-control">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="date_of_joining">Date of Joining *</label>
+              <input type="date" id="date_of_joining" formControlName="date_of_joining" class="form-control">
+            </div>
+            <div class="form-group">
+              <label for="date_of_leaving">Date of Leaving</label>
+              <input type="date" id="date_of_leaving" formControlName="date_of_leaving" class="form-control">
+            </div>
+          </div>
+        </div>
+
+        <div class="form-section">
+          <h3>Emergency Contact</h3>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="emergency_contact_name">Name *</label>
+              <input type="text" id="emergency_contact_name" formControlName="emergency_contact_name" class="form-control">
+            </div>
+            <div class="form-group">
+              <label for="emergency_contact_phone">Phone *</label>
+              <input type="tel" id="emergency_contact_phone" formControlName="emergency_contact_phone" class="form-control">
+            </div>
+            <div class="form-group">
+              <label for="emergency_contact_relation">Relation *</label>
+              <input type="text" id="emergency_contact_relation" formControlName="emergency_contact_relation" class="form-control">
+            </div>
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button type="button" class="btn-secondary" (click)="cancel()">Cancel</button>
+          <button type="submit" class="btn-primary" [disabled]="employeeForm.invalid || isLoading">
+            {{ isLoading ? 'Saving...' : (isEditMode ? 'Update' : 'Create') }}
+          </button>
+        </div>
+
+        <div class="error-message" *ngIf="errorMessage">
+          {{ errorMessage }}
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
