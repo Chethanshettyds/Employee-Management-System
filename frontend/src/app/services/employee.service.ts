@@ -71,4 +71,9 @@ export class EmployeeService {
   getStatistics(): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}statistics/`, { headers: this.getHeaders() });
   }
+
+  getDashboardStats() {
+  return this.http.get<any>('/api/dashboard/stats/');  // Your backend dashboard endpoint
+}
+
 }

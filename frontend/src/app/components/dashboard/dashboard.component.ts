@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ChangeDetectorRef } from '@angular/core';
 import { BaseChartDirective } from 'ng2-charts';
 import { ChartConfiguration } from 'chart.js';
 import { EmployeeService } from '../../services/employee.service';
@@ -63,7 +64,7 @@ import { EmployeeService } from '../../services/employee.service';
 
         <div class="chart-card">
           <h3>Employment Type Distribution</h3>
-          <div class="chart-container">
+          <div class="chart-container" style="height: 300px; position: relative;">
             <canvas
               baseChart
               [type]="'bar'"
@@ -320,13 +321,13 @@ export class DashboardComponent implements OnInit {
       y: {
         beginAtZero: true,
         ticks: {
-          stepSize: 1
+          //stepSize: 10
         }
       }
     }
   };
 
-  constructor(private employeeService: EmployeeService) {}
+  constructor(private employeeService: EmployeeService, private cdr: ChangeDetectorRef) {}
 
   ngOnInit(): void {
     console.log('🚀 Dashboard Component Initialized');
