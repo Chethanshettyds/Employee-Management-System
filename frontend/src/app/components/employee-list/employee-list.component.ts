@@ -48,7 +48,7 @@ import { EmployeeService, Employee } from '../../../services/employee.service';
                 <td>{{ employee.first_name }} {{ employee.last_name }}</td>
                 <td>{{ employee.email }}</td>
                 <td>{{ employee.phone }}</td>
-                <td>Dept {{ employee.department }}</td>
+                <td>Dept {{ employee.department_name }}</td>
                 <td>Desg {{ employee.designation }}</td>
                 <td>
                   <span class="badge" [class.active]="employee.is_active" [class.inactive]="!employee.is_active">
@@ -230,6 +230,7 @@ export class EmployeeListComponent implements OnInit {
       next: (data) => {
         this.employees = data;
         this.filteredEmployees = data;
+        console.log('Employees loaded:', this.filteredEmployees);
       },
       error: (error) => {
         console.error('Error loading employees:', error);

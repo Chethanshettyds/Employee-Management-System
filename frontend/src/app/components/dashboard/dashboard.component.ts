@@ -52,7 +52,7 @@ import { EmployeeService } from '../../services/employee.service';
         <div class="chart-card">
           <h3>Gender Distribution</h3>
           <div class="chart-container">
-            <canvas 
+            <canvas
               baseChart
               [type]="'doughnut'"
               [data]="genderChartData"
@@ -64,7 +64,7 @@ import { EmployeeService } from '../../services/employee.service';
         <div class="chart-card">
           <h3>Employment Type Distribution</h3>
           <div class="chart-container">
-            <canvas 
+            <canvas
               baseChart
               [type]="'bar'"
               [data]="employmentTypeChartData"
@@ -276,7 +276,7 @@ export class DashboardComponent implements OnInit {
     active: 0
   };
 
-  recentEmployees: any[] = [];  // Initialize as empty array
+  recentEmployees: any[] = [];
 
   genderChartData: ChartConfiguration['data'] = {
     labels: ['Male', 'Female'],
@@ -335,12 +335,11 @@ export class DashboardComponent implements OnInit {
 
   loadDashboardData(): void {
     console.log('📥 Loading dashboard data...');
-    
+
     this.employeeService.getEmployees().subscribe({
       next: (data: any) => {
         console.log('📦 Raw employee data:', data);
-        
-        // Handle both direct array and paginated response
+
         let employees: any[] = [];
         if (Array.isArray(data)) {
           employees = data;
@@ -349,10 +348,10 @@ export class DashboardComponent implements OnInit {
         } else {
           employees = [];
         }
-        
+
         console.log('✅ Employees array:', employees.length, 'items');
 
-        // Safely calculate statistics
+        // basic stats
         this.stats.total = employees.length;
         this.stats.male = employees.filter(e => e.gender === 'M' || e.gender === 'Male').length;
         this.stats.female = employees.filter(e => e.gender === 'F' || e.gender === 'Female').length;
@@ -360,28 +359,78 @@ export class DashboardComponent implements OnInit {
 
         console.log('📊 Stats:', this.stats);
 
-        // Update gender chart
-        this.genderChartData.datasets[0].data = [this.stats.male, this.stats.female];
+        // gender chart
+        this.genderChartData = {
+          ...this.genderChartData,
+          datasets: [
+            {
+              ...this.genderChartData.datasets![0],
+              data: [this.stats.male, this.stats.female]
+            }
+          ]
+        };
 
-        // Count employee types
+        // employment types – handle ids or text
         const typeCount: { [key: string]: number } = {};
         employees.forEach(e => {
-          const typeId = e.employee_type;
-          typeCount[typeId] = (typeCount[typeId] || 0) + 1;
-        });
+          const rawType = e.employee_type || e.employee_type_id || e.type;
+          if (!rawType && rawType !== 0) {
+            return;
+          }
 
-        // Update employment type chart
-        // Assuming employee_type IDs: 1=Permanent, 2=Contract, 3=Temporary, 4=Intern
-        this.employmentTypeChartData.datasets[0].data = [
-          typeCount[1] || 0,
-          typeCount[2] || 0,
-          typeCount[3] || 0,
-          typeCount[4] || 0
-        ];
+          // normalize values to string keys
+          let key: string;
+          switch (rawType) {
+            case 1:
+            case '1':
+            case 'Permanent':
+            case 'PERMANENT':
+              key = 'Permanent';
+              break;
+            case 2:
+            case '2':
+            case 'Contract':
+            case 'CONTRACT':
+              key = 'Contract';
+              break;
+            case 3:
+            case '3':
+            case 'Temporary':
+            case 'TEMPORARY':
+              key = 'Temporary';
+              break;
+            case 4:
+            case '4':
+            case 'Intern':
+            case 'INTERN':
+              key = 'Intern';
+              break;
+            default:
+              // ignore unknown types
+              return;
+          }
+
+          typeCount[key] = (typeCount[key] || 0) + 1;
+        });
 
         console.log('📊 Employment types:', typeCount);
 
-        // Get recent employees (last 5 by joining date)
+        this.employmentTypeChartData = {
+          ...this.employmentTypeChartData,
+          datasets: [
+            {
+              ...this.employmentTypeChartData.datasets![0],
+              data: [
+                typeCount['Permanent'] || 0,
+                typeCount['Contract'] || 0,
+                typeCount['Temporary'] || 0,
+                typeCount['Intern'] || 0
+              ]
+            }
+          ]
+        };
+
+        // recent employees
         this.recentEmployees = [...employees]
           .filter(e => e.date_of_joining)
           .sort((a, b) => {
@@ -397,6 +446,20 @@ export class DashboardComponent implements OnInit {
         console.error('❌ Error loading dashboard data:', error);
         this.stats = { total: 0, male: 0, female: 0, active: 0 };
         this.recentEmployees = [];
+
+        this.genderChartData = {
+          ...this.genderChartData,
+          datasets: [
+            { ...this.genderChartData.datasets![0], data: [0, 0] }
+          ]
+        };
+
+        this.employmentTypeChartData = {
+          ...this.employmentTypeChartData,
+          datasets: [
+            { ...this.employmentTypeChartData.datasets![0], data: [0, 0, 0, 0] }
+          ]
+        };
       }
     });
   }
