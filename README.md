@@ -9,5 +9,5 @@ Link : http://127.0.0.1:8000/
 frontend :
 
 step 1: cd frontend
-step 2: npm start    or   ng serve
+step 2: npm start    or   ng serve     or npx ng serve
 http://localhost:4200/

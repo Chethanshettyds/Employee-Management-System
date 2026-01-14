@@ -11,48 +11,54 @@
       <div *ngIf="isLoading" class="loading">Loading...</div>
 
       <div *ngIf="!isLoading && stats" class="dashboard-grid">
+        <!-- Total Employees -->
         <div class="stat-card primary">
-          <div class="stat-icon">👥</div>
+          <i class="pi pi-users stat-icon-pi"></i>
           <div class="stat-info">
             <h3>Total Employees</h3>
             <p class="stat-number">{{ stats.total_employees }}</p>
           </div>
         </div>
 
+        <!-- Male Employees -->
         <div class="stat-card success">
-          <div class="stat-icon">👨</div>
+          <i class="pi pi-user stat-icon-pi"></i>
           <div class="stat-info">
             <h3>Male Employees</h3>
             <p class="stat-number">{{ stats.male_employees }}</p>
           </div>
         </div>
 
+        <!-- Female Employees -->
         <div class="stat-card warning">
-          <div class="stat-icon">👩</div>
+          <i class="pi pi-user-female stat-icon-pi"></i>
           <div class="stat-info">
             <h3>Female Employees</h3>
             <p class="stat-number">{{ stats.female_employees }}</p>
           </div>
         </div>
 
+        <!-- Permanent -->
         <div class="stat-card info">
-          <div class="stat-icon">📋</div>
+          <i class="pi pi-check-circle stat-icon-pi"></i>
           <div class="stat-info">
             <h3>Permanent</h3>
             <p class="stat-number">{{ stats.permanent_employees }}</p>
           </div>
         </div>
 
+        <!-- Temporary -->
         <div class="stat-card secondary">
-          <div class="stat-icon">📝</div>
+          <i class="pi pi-clock stat-icon-pi"></i>
           <div class="stat-info">
             <h3>Temporary</h3>
             <p class="stat-number">{{ stats.temporary_employees }}</p>
           </div>
         </div>
 
+        <!-- Contract -->
         <div class="stat-card danger">
-          <div class="stat-icon">📄</div>
+          <i class="pi pi-file-contract stat-icon-pi"></i>
           <div class="stat-info">
             <h3>Contract</h3>
             <p class="stat-number">{{ stats.contract_employees }}</p>
@@ -85,37 +91,36 @@
         </div>
       </div>
 
-      <!-- Employment Type Distribution Table (matches Gender table style) -->
-<div *ngIf="!isLoading && stats" class="charts-section">
-  <div class="chart-card">
-    <h3>Employment Type Distribution</h3>
-    <table class="employment-table">
-      <thead>
-        <tr>
-          <th>Type</th>
-          <th>Count</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Permanent</td>
-          <td>{{ stats.permanent_employees }}</td>
-        </tr>
-        <tr>
-          <td>Temporary</td>
-          <td>{{ stats.temporary_employees }}</td>
-        </tr>
-        <tr>
-          <td>Contract</td>
-          <td>{{ stats.contract_employees }}</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-</div>
+      <!-- Employment Type Distribution Table -->
+      <div *ngIf="!isLoading && stats" class="charts-section">
+        <div class="chart-card">
+          <h3>Employment Type Distribution</h3>
+          <table class="employment-table">
+            <thead>
+              <tr>
+                <th>Type</th>
+                <th>Count</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Permanent</td>
+                <td>{{ stats.permanent_employees }}</td>
+              </tr>
+              <tr>
+                <td>Temporary</td>
+                <td>{{ stats.temporary_employees }}</td>
+              </tr>
+              <tr>
+                <td>Contract</td>
+                <td>{{ stats.contract_employees }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
 
-
-
+      <!-- Department & Company Distribution -->
       <div *ngIf="!isLoading && stats" class="charts-section">
         <div class="chart-card">
           <h3>Department Distribution</h3>
@@ -137,7 +142,6 @@
           </div>
         </div>
       </div>
-
     </div>
   </div>
 </div>

@@ -20,3 +20,15 @@
 .employment-table tr:hover {
   background: #f9f9f9;
 }
+
+
+.stat-icon-pi {
+  font-size: 2.5rem !important;
+  width: 64px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+  color: rgba(255, 255, 255, 0.9);
+}

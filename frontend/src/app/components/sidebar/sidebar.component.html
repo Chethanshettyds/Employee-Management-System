@@ -3,7 +3,8 @@
     <li *ngFor="let item of menuItems" 
         [class.active]="isActive(item.route)"
         [routerLink]="item.route">
-      <span class="menu-icon">{{ item.icon }}</span>
+      <!-- SINGLE ICON ONLY - FIXED -->
+      <i [class]="item.icon" class="menu-icon-pi"></i>
       <span class="menu-label">{{ item.label }}</span>
     </li>
   </ul>

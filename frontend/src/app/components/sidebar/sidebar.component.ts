@@ -8,12 +8,14 @@ import { Router } from '@angular/router';
 })
 export class SidebarComponent {
   menuItems = [
-    { label: 'Dashboard', icon: '📊', route: '/dashboard' },
-    { label: 'Employees', icon: '👥', route: '/employees' },
-    { label: 'Companies', icon: '🏢', route: '/companies' },
-    { label: 'Departments', icon: '🏛️', route: '/departments' },
-    { label: 'Master Data', icon: '📁', route: '/masters' }
-  ];
+  { label: 'Dashboard', route: '/dashboard', icon: 'pi-chart-line' },
+  { label: 'Employees', route: '/employees', icon: 'pi-users' },
+  { label: 'Companies', route: '/companies', icon: 'pi-building' },
+  { label: 'Departments', route: '/departments', icon: 'pi-sitemap' },
+  { label: 'Designations', route: '/designations', icon: 'pi-briefcase' },
+  { label: 'Locations', route: '/locations', icon: 'pi-map-marker' },
+  { label: 'Employee Types', route: '/employee-types', icon: 'pi-id-card' }
+];
 
   constructor(public router: Router) {}
 
