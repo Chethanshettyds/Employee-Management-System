@@ -91,34 +91,14 @@
         </div>
       </div>
 
-      <!-- Employment Type Distribution Table -->
-      <div *ngIf="!isLoading && stats" class="charts-section">
+      <!-- Employment Type Distribution CHART -->
+      <div *ngIf="!isLoading" class="charts-section">
         <div class="chart-card">
           <h3>Employment Type Distribution</h3>
-          <table class="employment-table">
-            <thead>
-              <tr>
-                <th>Type</th>
-                <th>Count</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Permanent</td>
-                <td>{{ stats.permanent_employees }}</td>
-              </tr>
-              <tr>
-                <td>Temporary</td>
-                <td>{{ stats.temporary_employees }}</td>
-              </tr>
-              <tr>
-                <td>Contract</td>
-                <td>{{ stats.contract_employees }}</td>
-              </tr>
-            </tbody>
-          </table>
+          <p-chart type="bar" [data]="employmentChartData" [options]="employmentChartOptions"></p-chart>
         </div>
       </div>
+
 
       <!-- Department & Company Distribution -->
       <div *ngIf="!isLoading && stats" class="charts-section">
@@ -126,7 +106,7 @@
           <h3>Department Distribution</h3>
           <div class="chart-list">
             <div *ngFor="let dept of stats.department_wise" class="chart-item">
-              <span class="chart-label">{{ dept.department__name }}</span>
+              <span class="chart-label">{{ dept.department_name }}</span>
               <span class="chart-value">{{ dept.count }}</span>
             </div>
           </div>

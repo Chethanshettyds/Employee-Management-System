@@ -81,3 +81,8 @@ button {
 .mb-20 {
   margin-bottom: 20px;
 }
+
+@font-face {
+  font-family: 'Inter var';
+  src: local('Arial'); // dummy local font so browser doesn't fetch remote woff2
+}

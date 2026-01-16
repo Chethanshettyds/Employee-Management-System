@@ -20,12 +20,12 @@ import { AuthService, User } from '../../services/auth.service';
 
         <nav class="sidebar-nav">
           <a routerLink="/dashboard" routerLinkActive="active" class="nav-item">
-            <span class="icon">📊</span>
+            <i class="pi pi-th-large" style="font-size: 1.2rem"></i>
             <span class="text" *ngIf="!sidebarCollapsed">Dashboard</span>
           </a>
 
           <a routerLink="/employees" routerLinkActive="active" class="nav-item">
-            <span class="icon">👥</span>
+            <i class="pi pi-users" style="font-size: 1.5rem"></i>
             <span class="text" *ngIf="!sidebarCollapsed">Employees</span>
           </a>
 
@@ -34,27 +34,27 @@ import { AuthService, User } from '../../services/auth.service';
           </div>
 
           <a routerLink="/masters/companies" routerLinkActive="active" class="nav-item">
-            <span class="icon">🏢</span>
+            <i class="pi pi-shop" style="font-size: 1.5rem"></i>
             <span class="text" *ngIf="!sidebarCollapsed">Companies</span>
           </a>
 
           <a routerLink="/masters/departments" routerLinkActive="active" class="nav-item">
-            <span class="icon">🏛️</span>
+            <i class="pi pi-building-columns" style="font-size: 1.5rem"></i>
             <span class="text" *ngIf="!sidebarCollapsed">Departments</span>
           </a>
 
           <a routerLink="/masters/designations" routerLinkActive="active" class="nav-item">
-            <span class="icon">💼</span>
+            <i class="pi pi-copy" style="font-size: 1.5rem"></i>
             <span class="text" *ngIf="!sidebarCollapsed">Designations</span>
           </a>
 
           <a routerLink="/masters/locations" routerLinkActive="active" class="nav-item">
-            <span class="icon">📍</span>
+            <i class="pi pi-map-marker" style="font-size: 1.5rem"></i>
             <span class="text" *ngIf="!sidebarCollapsed">Locations</span>
           </a>
 
           <a routerLink="/masters/employee-types" routerLinkActive="active" class="nav-item">
-            <span class="icon">👔</span>
+            <i class="pi pi-pen-to-square" style="font-size: 1.4rem"></i>
             <span class="text" *ngIf="!sidebarCollapsed">Employee Types</span>
           </a>
         </nav>

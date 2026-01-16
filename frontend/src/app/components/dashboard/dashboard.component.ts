@@ -16,7 +16,7 @@ import { EmployeeService } from '../../services/employee.service';
       <!-- Statistics Cards -->
       <div class="stats-grid">
         <div class="stat-card">
-          <div class="stat-icon" style="background: #3498db;">👥</div>
+          <i class="pi pi-users" style="font-size: 3.5rem"></i>
           <div class="stat-content">
             <h3>Total Employees</h3>
             <p class="stat-number">{{ stats.total || 0 }}</p>
@@ -24,7 +24,7 @@ import { EmployeeService } from '../../services/employee.service';
         </div>
 
         <div class="stat-card">
-          <div class="stat-icon" style="background: #e91e63;">👨</div>
+          <i class="pi pi-mars" style="font-size: 3.5rem"></i>
           <div class="stat-content">
             <h3>Male Employees</h3>
             <p class="stat-number">{{ stats.male || 0 }}</p>
@@ -32,7 +32,7 @@ import { EmployeeService } from '../../services/employee.service';
         </div>
 
         <div class="stat-card">
-          <div class="stat-icon" style="background: #9c27b0;">👩</div>
+          <i class="pi pi-venus" style="font-size: 3.5rem"></i>
           <div class="stat-content">
             <h3>Female Employees</h3>
             <p class="stat-number">{{ stats.female || 0 }}</p>
@@ -40,7 +40,7 @@ import { EmployeeService } from '../../services/employee.service';
         </div>
 
         <div class="stat-card">
-          <div class="stat-icon" style="background: #4caf50;">✓</div>
+          <i class="pi pi-verified" style="font-size: 3.5rem"></i>
           <div class="stat-content">
             <h3>Active Employees</h3>
             <p class="stat-number">{{ stats.active || 0 }}</p>
@@ -95,7 +95,7 @@ import { EmployeeService } from '../../services/employee.service';
                 <td>{{ employee.employee_id || '-' }}</td>
                 <td>{{ employee.first_name }} {{ employee.last_name }}</td>
                 <td>{{ employee.email }}</td>
-                <td>{{ employee.department?.name || employee.department || '-' }}</td>
+                <td>{{ employee.department?.name || employee.department_name || '-' }}</td>
                 <td>{{ employee.date_of_joining | date:'shortDate' }}</td>
                 <td>
                   <span class="badge" [class.active]="employee.is_active" [class.inactive]="!employee.is_active">
