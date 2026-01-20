@@ -310,22 +310,28 @@ export class DashboardComponent implements OnInit {
   };
 
   barChartOptions: ChartConfiguration['options'] = {
-    responsive: true,
-    maintainAspectRatio: false,
-    plugins: {
-      legend: {
-        display: false
-      }
-    },
-    scales: {
-      y: {
-        beginAtZero: true,
-        ticks: {
-          //stepSize: 10
+  responsive: true,
+  maintainAspectRatio: false,
+  plugins: {
+    legend: {
+      display: false
+    }
+  },
+  scales: {
+    y: {
+      beginAtZero: true,
+      min: 0,
+      ticks: {
+        stepSize: 1,
+        precision: 0,
+        callback: function(this: any, tickValue: number | string, index: number, ticks: any[]) {
+          return Math.floor(Number(tickValue)).toString();
         }
       }
     }
-  };
+  }
+};
+
 
   constructor(private employeeService: EmployeeService, private cdr: ChangeDetectorRef) {}
 
@@ -374,7 +380,7 @@ export class DashboardComponent implements OnInit {
         // employment types – handle ids or text
         const typeCount: { [key: string]: number } = {};
         employees.forEach(e => {
-          const rawType = e.employee_type || e.employee_type_id || e.type;
+          const rawType = e.employee_type_name || e.employee_type_id || e.type;
           if (!rawType && rawType !== 0) {
             return;
           }
