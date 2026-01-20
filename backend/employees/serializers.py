@@ -25,7 +25,7 @@ class EmployeeListSerializer(serializers.ModelSerializer):
 class EmployeeDetailSerializer(serializers.ModelSerializer):
     company_details = CompanySerializer(source='company', read_only=True)
     department_details = DepartmentSerializer(source='department', read_only=True)
-    designation_details = DesignationSerializer(source='designation', read_only=True)
+    designation_details = DesignationSerializer(source='designation_title', read_only=True)
     location_details = LocationSerializer(source='location', read_only=True)
     employee_type_details = EmployeeTypeSerializer(source='employee_type', read_only=True)
     

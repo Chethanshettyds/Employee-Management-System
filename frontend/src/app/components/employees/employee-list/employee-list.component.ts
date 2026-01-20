@@ -48,8 +48,8 @@ import { EmployeeService, Employee } from '../../../services/employee.service';
                 <td>{{ employee.first_name }} {{ employee.last_name }}</td>
                 <td>{{ employee.email }}</td>
                 <td>{{ employee.phone || '-' }}</td>
-                <td>{{ getDepartmentName(employee.department) }}</td>
-                <td>{{ getDesignationName(employee.designation) }}</td>
+                <td>{{ getDepartmentName(employee) }}</td>
+                <td>{{ getDesignationName(employee) }}</td>
                 <td>
                   <span class="badge" [class.active]="employee.is_active" [class.inactive]="!employee.is_active">
                     {{ employee.is_active ? 'Active' : 'Inactive' }}
@@ -306,20 +306,24 @@ export class EmployeeListComponent implements OnInit {
   }
 
   // Helper method to display department name or ID
-  getDepartmentName(department: any): string {
-    if (!department) return '-';
-    if (typeof department === 'object' && department.name) {
-      return department.name;
-    }
-    return `Dept ${department}`;
-  }
+  getDepartmentName(employee: any): string {
+    return employee.department_name || '-';  // ✅ Direct field from API
+ }
 
   // Helper method to display designation name or ID
-  getDesignationName(designation: any): string {
-    if (!designation) return '-';
-    if (typeof designation === 'object' && designation.title) {
-      return designation.title;
-    }
-    return `Desg ${designation}`;
-  }
+  getDesignationName(employee: any): string {
+   return employee.designation_title || '-';  // ✅ Direct field from API
+ }
+
 }
+
+
+
+
+
+// getDepartmentName(employee: any): string {
+//   return employee.department_name || '-';  // ✅ Direct field from API
+// }
+
+// getDesignationName(employee: any): string {
+//   return employee.designation_title || '-';  // ✅ Direct field from API
